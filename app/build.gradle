@@ -21,10 +21,10 @@ android {
     signingConfigs {
         release {
             def keystoreProperties = new Properties()
-            def keystorePropsFile = file("KeyStore/keystore_config")
+            def keystorePropsFile = file("KeyStore/keystore.properties")
 
             if (keystorePropsFile.exists()) {
-                file("KeyStore/keystore_config").withInputStream { keystoreProperties.load(it) }
+                file("KeyStore/keystore.properties").withInputStream { keystoreProperties.load(it) }
                 storeFile file("$keystoreProperties.storeFile")
                 storePassword "$keystoreProperties.storePassword"
                 keyAlias "$keystoreProperties.keyAlias"
