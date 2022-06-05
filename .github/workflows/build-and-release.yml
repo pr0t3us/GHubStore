@@ -55,7 +55,7 @@ jobs:
           path: app/build/outputs/bundle/release/app-release.aab
 
   release:
-    name: Build release artifacts
+    name: Publish release artifacts
     needs: release_apk
     runs-on: ubuntu-latest
     steps:
