@@ -18,6 +18,8 @@ jobs:
   release_apk:
     name: Generate release apk
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v3
