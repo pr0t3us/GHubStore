@@ -21,8 +21,8 @@ env:
   RELEASE_SIGN_KEY_PASSWORD: ${{ secrets.RELEASE_SIGN_KEY_PASSWORD }}
 
 jobs:
-  release_apk:
-    name: Generate release apk
+  generate_apk:
+    name: Generate release artifacts
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -53,26 +53,24 @@ jobs:
           ./gradlew assembleRelease --stacktrace
           ./gradlew bundleRelease
       - name: Upload signed APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app-release.apk
           path: app/build/outputs/apk/release/app-release.apk
 
       - name: Upload AAB Bundle
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: app-release.aab
           path: app/build/outputs/bundle/release/app-release.aab
 
-  release:
+  release_apk:
     name: Publish release artifacts
-    needs: release_apk
+    needs: generate_apk
     runs-on: ubuntu-latest
     steps:
       - name: Download APK from build
-        uses: actions/download-artifact@v1
-        with:
-          name: apk
+        uses: actions/download-artifact@v3
       - name: Extract version from tag
         uses: damienaicheh/extract-version-from-tag-action@v1.0.0
       - name: Create Release
