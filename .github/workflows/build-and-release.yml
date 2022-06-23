@@ -8,6 +8,11 @@ on:
       - "v*"
     paths-ignore:
           - '**.md'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to bump to'
+        required: false
 
 env:
   KEYSTORE_FILE: ${{ secrets.KEYSTORE_FILE }}
