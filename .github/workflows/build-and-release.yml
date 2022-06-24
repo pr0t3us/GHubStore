@@ -71,6 +71,8 @@ jobs:
     steps:
       - name: Download APK from build
         uses: actions/download-artifact@v3
+        with:
+          path: ./
       - name: Extract version from tag
         uses: battila7/get-version-action@v2
       - name: Create Release
@@ -90,3 +92,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: app-release.apk
           asset_name: app-release.apk
+          asset_content_type: application/zip
