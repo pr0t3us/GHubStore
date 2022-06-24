@@ -71,25 +71,15 @@ jobs:
     steps:
       - name: Download APK from build
         uses: actions/download-artifact@v3
-        with:
-          path: ./
       - name: Extract version from tag
         uses: battila7/get-version-action@v2
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
+          name: ${{ github.event.repository.name }} ${{ steps.get_version.outputs.version }}
           tag_name: ${{ github.ref_name }}
-          release_name: ${{ github.event.repository.name }} ${{ steps.get_version.outputs.version }}
-      - name: Upload Release APK
-        id: upload_release_asset
-        uses: actions/upload-release-asset@v1.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: app-release.apk
-          asset_name: app-release.apk
-          asset_content_type: application/zip
+          draft: false
+          prerelease: false
+          files: |
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/bundle/**/*.aab
