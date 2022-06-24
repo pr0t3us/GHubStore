@@ -71,6 +71,8 @@ jobs:
     steps:
       - name: Download APK from build
         uses: actions/download-artifact@v3
+        with:
+          path: ./
       - name: Extract version from tag
         uses: battila7/get-version-action@v2
       - name: Create GitHub Release
