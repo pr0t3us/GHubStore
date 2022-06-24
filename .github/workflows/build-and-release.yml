@@ -22,7 +22,7 @@ env:
 
 jobs:
   generate_apk:
-    name: Generate release artifacts
+    name: Generate and release artifacts
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -57,24 +57,11 @@ jobs:
         with:
           name: app-release.apk
           path: app/build/outputs/apk/release/app-release.apk
-
       - name: Upload AAB Bundle
         uses: actions/upload-artifact@v3
         with:
           name: app-release.aab
           path: app/build/outputs/bundle/release/app-release.aab
-
-  release_apk:
-    name: Publish release artifacts
-    needs: generate_apk
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download APK from build
-        uses: actions/download-artifact@v3
-        with:
-          path: ./
-      - name: Extract version from tag
-        uses: battila7/get-version-action@v2
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -83,5 +70,6 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            *.apk
-            *.aab
+            app/build/outputs/apk/**/*.apk
+            app/build/outputs/bundle/**/*.aab
+
