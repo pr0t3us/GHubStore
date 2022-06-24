@@ -76,10 +76,10 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ github.event.repository.name }} ${{ steps.get_version.outputs.version }}
+          name: ${{ github.event.repository.name }} ${{github.ref_name}}
           tag_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
           files: |
-            app/build/outputs/apk/**/*.apk
-            app/build/outputs/bundle/**/*.aab
+            *.apk
+            *.aab
