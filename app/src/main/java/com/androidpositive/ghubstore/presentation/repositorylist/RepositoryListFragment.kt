@@ -1,17 +1,15 @@
-package com.androidpositive.ghubstore
+package com.androidpositive.ghubstore.presentation.repositorylist
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.androidpositive.ghubstore.databinding.FragmentFirstBinding
+import com.androidpositive.ghubstore.R
+import com.androidpositive.ghubstore.databinding.FragmentRepositoryListBinding
 import com.androidpositive.viewbinding.viewBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment(R.layout.fragment_first) {
-    private val binding by viewBinding(FragmentFirstBinding::bind)
+class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
+    private val binding by viewBinding(FragmentRepositoryListBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
