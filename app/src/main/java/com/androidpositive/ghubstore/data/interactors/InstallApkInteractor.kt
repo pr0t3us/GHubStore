@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.interactors
+package com.androidpositive.ghubstore.data.interactors
 
 import android.content.Context
 import android.content.Intent
