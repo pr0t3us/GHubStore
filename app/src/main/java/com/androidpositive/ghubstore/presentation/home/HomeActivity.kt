@@ -12,7 +12,9 @@ import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.ActivityHomeBinding
 import com.androidpositive.viewbinding.viewBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
