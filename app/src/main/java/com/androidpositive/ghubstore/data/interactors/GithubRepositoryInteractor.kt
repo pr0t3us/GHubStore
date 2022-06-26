@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.presentation.repositorylist
+package com.androidpositive.ghubstore.data.interactors
 
 import com.androidpositive.ghubstore.di.IoDispatcher
 import dagger.Binds
@@ -13,7 +13,7 @@ import org.kohsuke.github.GitHub
 import org.kohsuke.github.PagedIterable
 import javax.inject.Inject
 
-interface RepositoryListInteractor {
+interface GithubRepositoryInteractor {
     suspend fun getRepository(name: String): Result<GHRepository>
     suspend fun listReleases(repository: GHRepository): Result<PagedIterable<GHRelease>>
 
@@ -22,15 +22,15 @@ interface RepositoryListInteractor {
     abstract class RepositoryListInteractorModule {
         @Binds
         abstract fun bindInteractor(
-            interactor: RepositoryListInteractorImpl
-        ): RepositoryListInteractor
+            interactor: GithubRepositoryInteractorImpl
+        ): GithubRepositoryInteractor
     }
 }
 
-class RepositoryListInteractorImpl @Inject constructor(
+class GithubRepositoryInteractorImpl @Inject constructor(
     private val githubClient: GitHub,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
-) : RepositoryListInteractor {
+) : GithubRepositoryInteractor {
     override suspend fun getRepository(name: String): Result<GHRepository> {
         return withContext(ioDispatcher) {
             return@withContext runCatching { githubClient.getRepository(name) }
