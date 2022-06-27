@@ -30,7 +30,7 @@
         app:layout_constraintGuide_begin="@dimen/item_width"
         />
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/repository_detail_nav_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
@@ -41,6 +41,11 @@
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/primary_details_sub_nav_graph"
+        />
+
+    <include
+        layout="@layout/progress_layout"
+        android:id="@+id/progress_layout"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

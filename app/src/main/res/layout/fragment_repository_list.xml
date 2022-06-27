@@ -20,4 +20,10 @@
         tools:context="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryHostActivity"
         tools:listitem="@layout/repository_list_content"
         />
+
+    <include
+        layout="@layout/progress_layout"
+        android:id="@+id/progress_layout"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

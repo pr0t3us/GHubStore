@@ -15,6 +15,7 @@ import javax.inject.Inject
 
 interface GithubRepositoryInteractor {
     suspend fun getRepository(name: String): Result<GHRepository>
+    suspend fun getRepositories(names: List<String>): Result<List<GHRepository>>
     suspend fun listReleases(repository: GHRepository): Result<PagedIterable<GHRelease>>
 
     @Module
@@ -34,6 +35,12 @@ class GithubRepositoryInteractorImpl @Inject constructor(
     override suspend fun getRepository(name: String): Result<GHRepository> {
         return withContext(ioDispatcher) {
             return@withContext runCatching { githubClient.getRepository(name) }
+        }
+    }
+
+    override suspend fun getRepositories(names: List<String>): Result<List<GHRepository>> {
+        return withContext(ioDispatcher) {
+            return@withContext runCatching { names.map { githubClient.getRepository(it) } }
         }
     }
 

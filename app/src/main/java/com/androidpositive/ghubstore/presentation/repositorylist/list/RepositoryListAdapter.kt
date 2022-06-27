@@ -1,24 +1,20 @@
 package com.androidpositive.ghubstore.presentation.repositorylist.list
 
-import android.content.ClipData
-import android.content.ClipDescription
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.RepositoryListContentBinding
-import com.androidpositive.ghubstore.presentation.placeholder.PlaceholderContent
 import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment
 import com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListAdapter.ViewHolder
+import org.kohsuke.github.GHRepository
 
 class RepositoryListAdapter(
-    private val values: List<PlaceholderContent.PlaceholderItem>,
+    private val repositories: List<GHRepository>,
     private val itemDetailFragmentContainer: View?
 ) : RecyclerView.Adapter<ViewHolder>() {
 
@@ -30,73 +26,37 @@ class RepositoryListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = repositories[position]
+        holder.idView.text = item.name
+        holder.contentView.text = item.description
 
         with(holder.itemView) {
             tag = item
             setOnClickListener { itemView ->
-                val item = itemView.tag as PlaceholderContent.PlaceholderItem
-                val bundle = Bundle()
-                bundle.putString(
-                    RepositoryDetailFragment.ARG_ITEM_ID,
-                    item.id
-                )
-                if (itemDetailFragmentContainer != null) {
-                    itemDetailFragmentContainer.findNavController()
-                        .navigate(R.id.fragment_repository_detail, bundle)
-                } else {
-                    itemView.findNavController().navigate(R.id.show_repository_detail, bundle)
-                }
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                /**
-                 * Context click listener to handle Right click events
-                 * from mice and trackpad input to provide a more native
-                 * experience on larger screen devices
-                 */
-                setOnContextClickListener { v ->
-                    val item = v.tag as PlaceholderContent.PlaceholderItem
-                    Toast.makeText(
-                        v.context,
-                        "Context click of item " + item.id,
-                        Toast.LENGTH_LONG
-                    ).show()
-                    true
-                }
-            }
-
-            setOnLongClickListener { v ->
-                // Setting the item id as the clip data so that the drop target is able to
-                // identify the id of the content
-                val clipItem = ClipData.Item(item.id)
-                val dragData = ClipData(
-                    v.tag as? CharSequence,
-                    arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN),
-                    clipItem
-                )
-
-                if (Build.VERSION.SDK_INT >= 24) {
-                    v.startDragAndDrop(
-                        dragData,
-                        View.DragShadowBuilder(v),
-                        null,
-                        0
-                    )
-                } else {
-                    v.startDrag(
-                        dragData,
-                        View.DragShadowBuilder(v),
-                        null,
-                        0
-                    )
-                }
+                navigateToRepositoryDetails(itemView, itemDetailFragmentContainer)
             }
         }
     }
 
-    override fun getItemCount() = values.size
+    override fun getItemCount() = repositories.size
+
+    private fun navigateToRepositoryDetails(
+        itemView: View,
+        itemDetailFragmentContainer: View?
+    ) {
+        val repository = itemView.tag as GHRepository
+        val bundle = Bundle()
+        bundle.putLong(
+            RepositoryDetailFragment.ARG_ITEM_ID,
+            repository.id
+        )
+        if (itemDetailFragmentContainer != null) {
+            itemDetailFragmentContainer.findNavController()
+                .navigate(R.id.fragment_repository_detail, bundle)
+        } else {
+            itemView.findNavController().navigate(R.id.show_repository_detail, bundle)
+        }
+    }
 
     inner class ViewHolder(
         binding: RepositoryListContentBinding
