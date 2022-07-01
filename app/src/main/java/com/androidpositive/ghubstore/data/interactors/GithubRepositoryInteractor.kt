@@ -1,10 +1,8 @@
 package com.androidpositive.ghubstore.data.interactors
 
 import com.androidpositive.ghubstore.di.IoDispatcher
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import it.czerwinski.android.hilt.annotations.BoundTo
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import org.kohsuke.github.GHRelease
@@ -17,17 +15,9 @@ interface GithubRepositoryInteractor {
     suspend fun getRepository(name: String): Result<GHRepository>
     suspend fun getRepositories(names: List<String>): Result<List<GHRepository>>
     suspend fun listReleases(repository: GHRepository): Result<PagedIterable<GHRelease>>
-
-    @Module
-    @InstallIn(ViewModelComponent::class)
-    abstract class RepositoryListInteractorModule {
-        @Binds
-        abstract fun bindInteractor(
-            interactor: GithubRepositoryInteractorImpl
-        ): GithubRepositoryInteractor
-    }
 }
 
+@BoundTo(supertype = GithubRepositoryInteractor::class, component = ViewModelComponent::class)
 class GithubRepositoryInteractorImpl @Inject constructor(
     private val githubClient: GitHub,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
