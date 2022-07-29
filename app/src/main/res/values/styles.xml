@@ -3,7 +3,7 @@
 
     <style name="ProgressBar">
         <item name="android:indeterminateOnly">true</item>
-        <item name="android:indeterminateTint">?colorPrimary</item>
+        <item name="android:indeterminateTint">?colorOnPrimary</item>
         <item name="android:indeterminateTintMode">src_in</item>
     </style>
 </resources>

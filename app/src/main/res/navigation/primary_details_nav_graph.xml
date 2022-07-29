@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/repository_list_fragment"
-        android:name="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryListFragment"
+        android:name="com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListFragment"
         android:label="RepositoryListFragment">
         <action
             android:id="@+id/show_repository_detail"

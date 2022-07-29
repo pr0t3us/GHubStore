@@ -1,15 +1,12 @@
-package com.androidpositive.ghubstore.presentation.repositorylist
+package com.androidpositive.ghubstore.presentation.repositorylist.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.androidpositive.extensions.hide
-import com.androidpositive.extensions.show
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.FragmentRepositoryListBinding
-import com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListAdapter
 import com.androidpositive.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.kohsuke.github.GHRepository
@@ -22,12 +19,11 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+
         viewModel.repository.observe(viewLifecycleOwner) {
-            it.loading {
-                binding.progressLayout.progressContainer.show()
-            }
             it.success { repositories ->
-                binding.progressLayout.progressContainer.hide()
                 setupRecyclerView(
                     binding.repositoryList,
                     repositories,
@@ -35,7 +31,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 )
             }
             it.failure {
-                binding.progressLayout.progressContainer.hide()
             }
         }
     }
