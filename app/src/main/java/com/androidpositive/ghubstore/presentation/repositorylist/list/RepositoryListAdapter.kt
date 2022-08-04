@@ -1,21 +1,15 @@
 package com.androidpositive.ghubstore.presentation.repositorylist.list
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.RepositoryListContentBinding
-import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment
 import com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListAdapter.ViewHolder
 import org.kohsuke.github.GHRepository
 
 class RepositoryListAdapter(
-    private val itemDetailFragmentContainer: View?,
     _repositories: List<GHRepository> = emptyList()
 ) : ListAdapter<GHRepository, ViewHolder>(callback) {
     companion object {
@@ -47,31 +41,6 @@ class RepositoryListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
-
-        with(holder.itemView) {
-            tag = getItem(position)
-            setOnClickListener { itemView ->
-                navigateToRepositoryDetails(itemView, itemDetailFragmentContainer)
-            }
-        }
-    }
-
-    private fun navigateToRepositoryDetails(
-        itemView: View,
-        itemDetailFragmentContainer: View?
-    ) {
-        val repository = itemView.tag as GHRepository
-        val bundle = Bundle()
-        bundle.putLong(
-            RepositoryDetailFragment.ARG_ITEM_ID,
-            repository.id
-        )
-        if (itemDetailFragmentContainer != null) {
-            itemDetailFragmentContainer.findNavController()
-                .navigate(R.id.fragment_repository_detail, bundle)
-        } else {
-            itemView.findNavController().navigate(R.id.show_repository_detail, bundle)
-        }
     }
 
     inner class ViewHolder(
