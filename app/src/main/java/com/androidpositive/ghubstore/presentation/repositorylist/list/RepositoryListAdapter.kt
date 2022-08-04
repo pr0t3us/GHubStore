@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.RepositoryListContentBinding
@@ -14,9 +15,28 @@ import com.androidpositive.ghubstore.presentation.repositorylist.list.Repository
 import org.kohsuke.github.GHRepository
 
 class RepositoryListAdapter(
-    private val repositories: List<GHRepository>,
-    private val itemDetailFragmentContainer: View?
-) : RecyclerView.Adapter<ViewHolder>() {
+    private val itemDetailFragmentContainer: View?,
+    _repositories: List<GHRepository> = emptyList()
+) : ListAdapter<GHRepository, ViewHolder>(callback) {
+    companion object {
+        val callback = object : DiffUtil.ItemCallback<GHRepository>() {
+            override fun areItemsTheSame(oldItem: GHRepository, newItem: GHRepository) =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: GHRepository, newItem: GHRepository) =
+                oldItem == newItem
+        }
+    }
+
+    var list: List<GHRepository>
+        get() = currentList
+        set(value) {
+            submitList(value)
+        }
+
+    init {
+        list = _repositories
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = RepositoryListContentBinding.inflate(
@@ -26,19 +46,15 @@ class RepositoryListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = repositories[position]
-        holder.idView.text = item.name
-        holder.contentView.text = item.description
+        holder.bind(getItem(position))
 
         with(holder.itemView) {
-            tag = item
+            tag = getItem(position)
             setOnClickListener { itemView ->
                 navigateToRepositoryDetails(itemView, itemDetailFragmentContainer)
             }
         }
     }
-
-    override fun getItemCount() = repositories.size
 
     private fun navigateToRepositoryDetails(
         itemView: View,
@@ -59,9 +75,14 @@ class RepositoryListAdapter(
     }
 
     inner class ViewHolder(
-        binding: RepositoryListContentBinding
+        private val binding: RepositoryListContentBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.idText
-        val contentView: TextView = binding.content
+
+        fun bind(item: GHRepository) {
+            with(binding) {
+                idText.text = item.name
+                content.text = item.description
+            }
+        }
     }
 }
