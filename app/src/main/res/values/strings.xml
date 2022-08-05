@@ -12,4 +12,7 @@
     <string name="title_activity_repository_detail_host">RepositoryDetailHostActivity</string>
     <string name="title_repository_list">Repositories</string>
     <string name="title_repository_detail">Repository Detail</string>
+
+    <!-- Error messages -->
+    <string name="general_error">Something went wrong</string>
 </resources>

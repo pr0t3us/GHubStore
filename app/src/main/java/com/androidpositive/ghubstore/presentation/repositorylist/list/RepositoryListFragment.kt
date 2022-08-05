@@ -12,6 +12,7 @@ import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.FragmentRepositoryListBinding
 import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment
 import com.androidpositive.viewbinding.viewBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +39,12 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 repositoryListAdapter.submitList(repositories)
             }
             it.failure {
+                Snackbar.make(
+                    binding.repositoryListContainer,
+                    getString(R.string.general_error),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+
             }
         }
     }
