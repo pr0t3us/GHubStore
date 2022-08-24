@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListViewModel"
+            />
+        <import type="android.view.View" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/repository_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repository_list"
+            android:name="com.androidpositive.ghubstore.presentation.RepositoryListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/container_horizontal_margin"
+            android:layout_marginStart="@dimen/container_horizontal_margin"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryHostActivity"
+            tools:listitem="@layout/repository_list_content"
+            />
+
+        <include
+            layout="@layout/progress_layout"
+            android:id="@+id/progress_layout"
+            app:isVisible="@{viewModel.repositories instanceof com.androidpositive.viewmodel.Resource.Loading}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
