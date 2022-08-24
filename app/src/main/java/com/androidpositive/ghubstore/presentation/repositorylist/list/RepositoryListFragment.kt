@@ -11,6 +11,7 @@ import com.androidpositive.extensions.ItemClickSupport.OnItemClickListener
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.FragmentRepositoryListBinding
 import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment
+import com.androidpositive.ghubstore.presentation.repositorylist.list.adapter.RepositoryListAdapter
 import com.androidpositive.viewbinding.viewBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,7 +54,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         position: Int,
         itemDetailFragmentContainer: View?
     ) {
-        val repository = repositoryListAdapter.list[position]
+        val repository = repositoryListAdapter.currentList[position]
         val bundle = Bundle()
         bundle.putLong(
             RepositoryDetailFragment.ARG_ITEM_ID,

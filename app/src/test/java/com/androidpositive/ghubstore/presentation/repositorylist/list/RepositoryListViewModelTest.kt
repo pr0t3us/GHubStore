@@ -35,7 +35,10 @@ class RepositoryListViewModelTest {
         val viewModel = RepositoryListViewModel(interactor)
         val repositoriesCaptor = viewModel.repositories.createCaptor()
 
-        repositoriesCaptor.assertSendsValues(Resource.Loading(), repositories.toResource())
+        repositoriesCaptor.assertSendsValues(
+            Resource.Loading(),
+            repositories.toUiModels().toResource()
+        )
     }
 
     @Test
@@ -46,6 +49,9 @@ class RepositoryListViewModelTest {
         val viewModel = RepositoryListViewModel(interactor)
         val repositoriesCaptor = viewModel.repositories.createCaptor()
 
-        repositoriesCaptor.assertSendsValues(Resource.Loading(), error.toResource())
+        repositoriesCaptor.assertSendsValues(
+            Resource.Loading(),
+            error.toUiModels().toResource()
+        )
     }
 }

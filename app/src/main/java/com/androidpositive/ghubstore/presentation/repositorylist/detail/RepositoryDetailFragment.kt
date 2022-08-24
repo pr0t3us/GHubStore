@@ -1,8 +1,6 @@
 package com.androidpositive.ghubstore.presentation.repositorylist.detail
 
-import android.content.ClipData
 import android.os.Bundle
-import android.view.DragEvent
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -13,12 +11,6 @@ import com.androidpositive.viewbinding.viewBinding
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A fragment representing a single Repository detail screen.
- * This fragment is either contained in a [RepositoryListFragment]
- * in two-pane mode (on larger screen devices) or self-contained
- * on handsets.
- */
 @AndroidEntryPoint
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
     private val binding by viewBinding(FragmentRepositoryDetailBinding::bind)
@@ -29,16 +21,6 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
 
     lateinit var itemDetailTextView: TextView
     private var toolbarLayout: CollapsingToolbarLayout? = null
-
-    private val dragListener = View.OnDragListener { v, event ->
-        if (event.action == DragEvent.ACTION_DROP) {
-            val clipDataItem: ClipData.Item = event.clipData.getItemAt(0)
-            val dragData = clipDataItem.text
-            item = PlaceholderContent.ITEM_MAP[dragData]
-            updateContent()
-        }
-        true
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,7 +41,6 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
         itemDetailTextView = binding.repositoryDetail
 
         updateContent()
-        view.setOnDragListener(dragListener)
     }
 
     private fun updateContent() {
