@@ -15,7 +15,7 @@ class RepositoryListViewModel @Inject constructor(
     private val interactor: GithubRepositoryInteractor
 ) : ViewModel() {
     private val repositoryNameList: List<String> = listOf("pr0t3us/GHubStore")
-    val repository: LiveData<Resource<List<GHRepository>>> = liveData {
+    val repositories: LiveData<Resource<List<GHRepository>>> = liveData {
         emit(Resource.Loading())
         try {
             val repositories = interactor.getRepositories(repositoryNameList).toResource()

@@ -34,7 +34,7 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                     navigateToRepositoryDetails(v, position, binding.repositoryDetailNavContainer)
                 }
             })
-        viewModel.repository.observe(viewLifecycleOwner) {
+        viewModel.repositories.observe(viewLifecycleOwner) {
             it.success { repositories ->
                 repositoryListAdapter.submitList(repositories)
             }
@@ -44,7 +44,6 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                     getString(R.string.general_error),
                     Snackbar.LENGTH_SHORT
                 ).show()
-
             }
         }
     }

@@ -55,7 +55,7 @@
         <include
             layout="@layout/progress_layout"
             android:id="@+id/progress_layout"
-            app:isVisible="@{viewModel.repository instanceof com.androidpositive.viewmodel.Resource.Loading}"
+            app:isVisible="@{viewModel.repositories instanceof com.androidpositive.viewmodel.Resource.Loading}"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
