@@ -11,7 +11,11 @@
         android:label="RepositoryListFragment">
         <action
             android:id="@+id/show_repository_detail"
-            app:destination="@id/repository_detail_fragment" />
+            app:destination="@id/repository_detail_fragment">
+            <argument
+                android:name="repository_item"
+                app:argType="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryUiModel" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/repository_detail_fragment"
@@ -19,7 +23,7 @@
         android:label="repository_detail"
         tools:layout="@layout/fragment_repository_detail">
         <argument
-            android:name="item_id"
-            app:argType="long" />
+            android:name="repository_item"
+            app:argType="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryUiModel" />
     </fragment>
 </navigation>

@@ -10,7 +10,7 @@ import com.androidpositive.extensions.ItemClickSupport.Companion.setOnItemClickL
 import com.androidpositive.extensions.ItemClickSupport.OnItemClickListener
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.FragmentRepositoryListBinding
-import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment
+import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragmentDirections
 import com.androidpositive.ghubstore.presentation.repositorylist.list.adapter.RepositoryListAdapter
 import com.androidpositive.viewbinding.viewBinding
 import com.google.android.material.snackbar.Snackbar
@@ -55,16 +55,11 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
         itemDetailFragmentContainer: View?
     ) {
         val repository = repositoryListAdapter.currentList[position]
-        val bundle = Bundle()
-        bundle.putLong(
-            RepositoryDetailFragment.ARG_ITEM_ID,
-            repository.id
-        )
+        val action = RepositoryDetailFragmentDirections.showRepositoryDetail(repository)
         if (itemDetailFragmentContainer != null) {
-            itemDetailFragmentContainer.findNavController()
-                .navigate(R.id.fragment_repository_detail, bundle)
+            itemDetailFragmentContainer.findNavController().navigate(action)
         } else {
-            itemView.findNavController().navigate(R.id.show_repository_detail, bundle)
+            itemView.findNavController().navigate(action)
         }
     }
 }
