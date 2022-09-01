@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="grey_900">#FF212121</color>F5F5F6
-    <color name="grey_800">#FF484848</color>
-    <color name="grey_100">#FFF5F5F6</color>
+    <color name="grey_900">#212121</color>
+    <color name="grey_800">#484848</color>
+    <color name="grey_100">#F5F5F6</color>
 
-    <color name="indigo_900">#FF002779</color>
-    <color name="indigo_500">#FF3E4FA9</color>
-    <color name="indigo_300">#FF727BDB</color>
+    <color name="indigo_900">#002779</color>
+    <color name="indigo_500">#3E4FA9</color>
+    <color name="indigo_300">#727BDB</color>
 
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
