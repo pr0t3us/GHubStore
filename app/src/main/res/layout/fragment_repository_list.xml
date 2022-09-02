@@ -24,7 +24,7 @@
             android:layout_marginStart="@dimen/container_horizontal_margin"
             app:layoutManager="LinearLayoutManager"
             tools:context="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryHostActivity"
-            tools:listitem="@layout/repository_list_content"
+            tools:listitem="@layout/item_repository_list"
             />
 
         <include

@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toStartOf="@id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             tools:context="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryHostActivity"
-            tools:listitem="@layout/repository_list_content"
+            tools:listitem="@layout/item_repository_list"
             />
 
         <androidx.constraintlayout.widget.Guideline

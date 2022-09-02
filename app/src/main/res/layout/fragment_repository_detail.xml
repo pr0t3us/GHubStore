@@ -41,20 +41,16 @@
         android:id="@+id/repository_detail_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="16dp"
+        android:paddingEnd="@dimen/container_horizontal_margin"
+        android:paddingStart="@dimen/container_horizontal_margin"
+        android:paddingTop="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
 
-        <TextView
-            android:id="@+id/repository_detail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="16dp"
-            android:paddingEnd="@dimen/container_horizontal_margin"
-            android:paddingStart="@dimen/container_horizontal_margin"
-            android:paddingTop="16dp"
-            android:textIsSelectable="true"
-            tools:context="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
-            style="?android:attr/textAppearanceLarge"
+        <include
+            android:id="@+id/layout_repository_detail"
+            layout="@layout/layout_repository_detail"
             />
 
     </androidx.core.widget.NestedScrollView>

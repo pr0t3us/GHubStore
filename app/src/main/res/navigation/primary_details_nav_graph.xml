@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/repository_list_fragment"
         android:name="com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListFragment"
-        android:label="RepositoryListFragment">
+        android:label="RepositoryList">
         <action
             android:id="@+id/show_repository_detail"
             app:destination="@id/repository_detail_fragment">
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/repository_detail_fragment"
         android:name="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
-        android:label="repository_detail"
+        android:label="RepositoryDetail"
         tools:layout="@layout/fragment_repository_detail">
         <argument
             android:name="repository_item"

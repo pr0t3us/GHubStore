@@ -4,15 +4,13 @@
     android:id="@+id/repository_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
     >
 
-    <TextView
-        android:id="@+id/repository_detail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
-        style="?android:attr/textAppearanceLarge"
+    <include
+        android:id="@+id/layout_repository_detail"
+        layout="@layout/layout_repository_detail"
         />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
