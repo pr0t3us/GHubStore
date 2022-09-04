@@ -7,27 +7,16 @@
     tools:context="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
     >
 
-    <TextView
-        android:id="@+id/repository_detail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        tools:text="@string/app_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="?android:attr/textAppearanceLarge"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/repository_list"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layoutManager="LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/repository_detail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_repository_list"
         />
 

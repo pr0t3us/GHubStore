@@ -19,10 +19,8 @@ class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbarLayout?.title = args.repositoryItem.name
-        with(binding.layoutRepositoryDetail) {
-            repositoryDetail.text = args.repositoryItem.description
-            repositoryList.adapter = listAdapter
-        }
+        binding.repositoryDetail.text = args.repositoryItem.description
+        binding.repositoryList.adapter = listAdapter
         listAdapter.submitList(args.repositoryItem.releases)
     }
 }
