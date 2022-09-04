@@ -14,7 +14,7 @@
             app:destination="@id/repository_detail_fragment" >
             <argument
                 android:name="repository_item"
-                app:argType="com.androidpositive.ghubstore.presentation.repositorylist.RepositoryUiModel" />
+                app:argType="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailUiModel" />
         </action>
     </fragment>
 </navigation>

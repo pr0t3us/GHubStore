@@ -19,25 +19,28 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
     private val binding by viewBinding(FragmentRepositoryListBinding::bind)
-    private val viewModel by activityViewModels<RepositoryListViewModel>()
-    private val repositoryListAdapter = RepositoryListAdapter()
+    private val viewModel: RepositoryListViewModel
+        by activityViewModels<RepositoryListViewModelImpl>()
+    private val listAdapter = RepositoryListAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.repositoryList.adapter = repositoryListAdapter
+        binding.repositoryList.adapter = listAdapter
 
         binding.repositoryList.setOnItemClickListener(
             object : OnItemClickListener {
                 override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
-                    navigateToRepositoryDetails(v, position, binding.repositoryDetailNavContainer)
+                    val navController = (binding.repositoryDetailNavContainer ?: v)
+                        .findNavController()
+                    viewModel.onItemClicked(position, navController)
                 }
             })
         viewModel.repositories.observe(viewLifecycleOwner) {
             it.success { repositories ->
-                repositoryListAdapter.submitList(repositories)
+                listAdapter.submitList(repositories)
             }
             it.failure {
                 Snackbar.make(
@@ -47,19 +50,17 @@ class RepositoryListFragment : Fragment(R.layout.fragment_repository_list) {
                 ).show()
             }
         }
+        viewModel.detailsRepository.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.asSuccess()?.data?.let { navigationModel ->
+                navigateToRepositoryDetails(navigationModel)
+            }
+        }
     }
 
-    private fun navigateToRepositoryDetails(
-        itemView: View,
-        position: Int,
-        itemDetailFragmentContainer: View?
-    ) {
-        val repository = repositoryListAdapter.currentList[position]
-        val action = RepositoryDetailFragmentDirections.showRepositoryDetail(repository)
-        if (itemDetailFragmentContainer != null) {
-            itemDetailFragmentContainer.findNavController().navigate(action)
-        } else {
-            itemView.findNavController().navigate(action)
-        }
+    private fun navigateToRepositoryDetails(navigationModel: RepositoryDetailNavigationModel) {
+        val action = RepositoryDetailFragmentDirections.showRepositoryDetail(
+            navigationModel.repositoryDetailUiModel
+        )
+        navigationModel.navController.navigate(action)
     }
 }
