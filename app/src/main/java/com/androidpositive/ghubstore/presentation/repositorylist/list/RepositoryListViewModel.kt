@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 interface RepositoryListViewModel {
     val repositories: LiveData<Resource<List<RepositoryUiModel>>>
-    val detailsRepository: LiveData<Event<Resource<RepositoryDetailNavigationModel>?>>
+    val detailsNavigationUiModel: LiveData<Event<Resource<RepositoryDetailNavigationModel>?>>
     fun onItemClicked(position: Int, navController: NavController)
 }
 
@@ -41,12 +41,12 @@ class RepositoryListViewModelImpl @Inject constructor(
             emit(Resource.Failure(exception))
         }
     }
-    override val detailsRepository =
+    override val detailsNavigationUiModel =
         MutableLiveData<Event<Resource<RepositoryDetailNavigationModel>?>>()
 
     override fun onItemClicked(position: Int, navController: NavController) {
         viewModelScope.launch {
-            detailsRepository.value = Event(
+            detailsNavigationUiModel.value = Event(
                 repositoryListRawData?.map {
                     val repository = it[position]
                     interactor.listReleases(repository).toUiModel(repository, navController)

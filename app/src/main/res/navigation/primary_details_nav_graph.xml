@@ -4,18 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/repository_list_fragment">
-
     <fragment
         android:id="@+id/repository_list_fragment"
         android:name="com.androidpositive.ghubstore.presentation.repositorylist.list.RepositoryListFragment"
         android:label="RepositoryList">
         <action
             android:id="@+id/show_repository_detail"
-            app:destination="@id/repository_detail_fragment">
-            <argument
-                android:name="repository_item"
-                app:argType="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailUiModel" />
-        </action>
+            app:destination="@id/repository_detail_fragment" />
     </fragment>
     <fragment
         android:id="@+id/repository_detail_fragment"
@@ -24,6 +19,8 @@
         tools:layout="@layout/fragment_repository_detail">
         <argument
             android:name="repository_item"
+            android:defaultValue="@null"
+            app:nullable="true"
             app:argType="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailUiModel" />
     </fragment>
 </navigation>

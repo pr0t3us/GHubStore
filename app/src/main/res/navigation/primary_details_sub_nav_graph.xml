@@ -11,9 +11,11 @@
         tools:layout="@layout/fragment_repository_detail">
         <action
             android:id="@+id/show_repository_detail"
-            app:destination="@id/repository_detail_fragment" >
+            app:destination="@id/fragment_repository_detail" >
             <argument
                 android:name="repository_item"
+                android:defaultValue="@null"
+                app:nullable="true"
                 app:argType="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailUiModel" />
         </action>
     </fragment>
