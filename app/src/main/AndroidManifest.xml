@@ -16,7 +16,6 @@
         <activity
             android:name=".presentation.repositorylist.RepositoryHostActivity"
             android:exported="true"
-            android:label="@string/title_activity_repository_detail_host"
             android:resizeableActivity="true"
             tools:targetApi="n">
             <intent-filter>

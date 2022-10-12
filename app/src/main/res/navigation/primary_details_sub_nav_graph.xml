@@ -9,9 +9,14 @@
         android:name="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
         android:label="@string/title_repository_detail"
         tools:layout="@layout/fragment_repository_detail">
-        <argument
-            android:name="item_id"
-            app:argType="long" />
+        <action
+            android:id="@+id/show_repository_detail"
+            app:destination="@id/fragment_repository_detail" >
+            <argument
+                android:name="repository_item"
+                android:defaultValue="@null"
+                app:nullable="true"
+                app:argType="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailUiModel" />
+        </action>
     </fragment>
-
 </navigation>

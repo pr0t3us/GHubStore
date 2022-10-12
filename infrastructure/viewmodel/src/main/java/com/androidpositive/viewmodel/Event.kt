@@ -9,7 +9,6 @@ import androidx.lifecycle.LiveData
 open class Event<out T>(private val content: T) {
 
     private var hasBeenHandled = false
-        private set
 
     /**
      * Returns the content and prevents its use again.

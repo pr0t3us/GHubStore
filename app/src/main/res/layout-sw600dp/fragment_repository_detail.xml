@@ -1,18 +1,40 @@
 <!-- Adding the same root's ID for view binding as other layout configurations -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/repository_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
     >
 
-    <TextView
-        android:id="@+id/repository_detail"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
-        android:textIsSelectable="true"
-        tools:context="com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailFragment"
-        style="?android:attr/textAppearanceLarge"
-        />
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/repository_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="?attr/colorPrimary"
+            android:textIsSelectable="true"
+            tools:text="@string/app_name"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repository_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/item_repository_list"
+            />
+
+    </LinearLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -8,13 +8,11 @@ import kotlinx.coroutines.withContext
 import org.kohsuke.github.GHRelease
 import org.kohsuke.github.GHRepository
 import org.kohsuke.github.GitHub
-import org.kohsuke.github.PagedIterable
 import javax.inject.Inject
 
 interface GithubRepositoryInteractor {
-    suspend fun getRepository(name: String): Result<GHRepository>
     suspend fun getRepositories(names: List<String>): Result<List<GHRepository>>
-    suspend fun listReleases(repository: GHRepository): Result<PagedIterable<GHRelease>>
+    suspend fun listReleases(repository: GHRepository): Result<List<GHRelease>>
 }
 
 @BoundTo(supertype = GithubRepositoryInteractor::class, component = ViewModelComponent::class)
@@ -22,11 +20,6 @@ private class GithubRepositoryInteractorImpl @Inject constructor(
     private val githubClient: GitHub,
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : GithubRepositoryInteractor {
-    override suspend fun getRepository(name: String): Result<GHRepository> {
-        return withContext(ioDispatcher) {
-            return@withContext runCatching { githubClient.getRepository(name) }
-        }
-    }
 
     override suspend fun getRepositories(names: List<String>): Result<List<GHRepository>> {
         return withContext(ioDispatcher) {
@@ -34,9 +27,9 @@ private class GithubRepositoryInteractorImpl @Inject constructor(
         }
     }
 
-    override suspend fun listReleases(repository: GHRepository): Result<PagedIterable<GHRelease>> {
+    override suspend fun listReleases(repository: GHRepository): Result<List<GHRelease>> {
         return withContext(ioDispatcher) {
-            return@withContext runCatching { repository.listReleases() }
+            return@withContext runCatching { repository.listReleases().toList() }
         }
     }
 }
