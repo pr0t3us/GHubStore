@@ -28,8 +28,14 @@ jobs:
     runs-on: ubuntu-latest
     if: startsWith(github.event.inputs.version, 'v')
     steps:
-      - name: Tagging
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set tag
         run: git tag ${{ github.event.inputs.version }}
+      - name: Publish tags
+        run: git push --tags
   generate_apk:
     name: Generate and release artifacts
     runs-on: ubuntu-latest
