@@ -1,7 +1,7 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.list.adapter
+package com.androidpositive.ghubstore.ui.github.list.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.androidpositive.ghubstore.presentation.repositorylist.RepositoryUiModel
+import com.androidpositive.ghubstore.ui.github.RepositoryUiModel
 
 object RepositoryUiModelDiff : DiffUtil.ItemCallback<RepositoryUiModel>() {
     override fun areItemsTheSame(oldItem: RepositoryUiModel, newItem: RepositoryUiModel) =

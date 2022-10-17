@@ -1,7 +1,9 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.list
+package com.androidpositive.ghubstore.ui.github.list
 
 import com.androidpositive.extensions.createCaptor
 import com.androidpositive.ghubstore.data.interactors.GithubRepositoryInteractor
+import com.androidpositive.ghubstore.ui.github.list.RepositoryListViewModelImpl
+import com.androidpositive.ghubstore.ui.github.list.toUiModels
 import com.androidpositive.viewmodel.BaseViewModelTest
 import com.androidpositive.viewmodel.Resource
 import com.androidpositive.viewmodel.toResource
@@ -14,7 +16,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
-class RepositoryListViewModelTest: BaseViewModelTest() {
+class RepositoryListViewModelTest : BaseViewModelTest() {
     private val interactor = mock<GithubRepositoryInteractor>()
 
     @Test

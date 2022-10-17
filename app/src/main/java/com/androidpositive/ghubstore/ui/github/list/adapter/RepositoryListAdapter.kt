@@ -1,10 +1,10 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.list.adapter
+package com.androidpositive.ghubstore.ui.github.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.androidpositive.ghubstore.databinding.ItemRepositoryListBinding
-import com.androidpositive.ghubstore.presentation.repositorylist.RepositoryUiModel
+import com.androidpositive.ghubstore.ui.github.RepositoryUiModel
 
 class RepositoryListAdapter :
     ListAdapter<RepositoryUiModel, RepositoryListViewHolder>(RepositoryUiModelDiff) {
