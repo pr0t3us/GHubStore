@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.list
+package com.androidpositive.ghubstore.ui.github.list
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,7 @@ import com.androidpositive.extensions.ItemClickSupport.Companion.setOnItemClickL
 import com.androidpositive.extensions.ItemClickSupport.OnItemClickListener
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.FragmentRepositoryListBinding
-import com.androidpositive.ghubstore.presentation.repositorylist.list.adapter.RepositoryListAdapter
+import com.androidpositive.ghubstore.ui.github.list.adapter.RepositoryListAdapter
 import com.androidpositive.viewbinding.viewBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

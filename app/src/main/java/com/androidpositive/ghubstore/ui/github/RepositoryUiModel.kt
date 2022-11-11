@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.presentation.repositorylist
+package com.androidpositive.ghubstore.ui.github
 
 import org.kohsuke.github.GHRepository
 import java.io.Serializable

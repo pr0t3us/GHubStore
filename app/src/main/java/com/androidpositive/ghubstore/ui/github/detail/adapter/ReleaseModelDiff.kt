@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.detail.adapter
+package com.androidpositive.ghubstore.ui.github.detail.adapter
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

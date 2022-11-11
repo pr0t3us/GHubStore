@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.presentation.repositorylist
+package com.androidpositive.ghubstore.ui.github
 
 import android.os.Bundle
 import android.view.Menu

@@ -5,7 +5,7 @@
     android:id="@+id/repository_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.repositorylist.RepositoryHostActivity"
+    tools:context=".ui.github.RepositoryHostActivity"
     tools:ignore="MergeRootFrame"
     >
 

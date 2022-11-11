@@ -1,11 +1,11 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.detail
+package com.androidpositive.ghubstore.ui.github.detail
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.databinding.FragmentRepositoryDetailBinding
-import com.androidpositive.ghubstore.presentation.repositorylist.detail.adapter.ReleaseListAdapter
+import com.androidpositive.ghubstore.ui.github.detail.adapter.ReleaseListAdapter
 import com.androidpositive.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 

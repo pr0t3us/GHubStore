@@ -1,4 +1,4 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.list
+package com.androidpositive.ghubstore.ui.github.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +7,8 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import com.androidpositive.ghubstore.data.interactors.GithubRepositoryInteractor
-import com.androidpositive.ghubstore.presentation.repositorylist.RepositoryUiModel
-import com.androidpositive.ghubstore.presentation.repositorylist.detail.RepositoryDetailUiModel
+import com.androidpositive.ghubstore.ui.github.RepositoryUiModel
+import com.androidpositive.ghubstore.ui.github.detail.RepositoryDetailUiModel
 import com.androidpositive.viewmodel.Event
 import com.androidpositive.viewmodel.Resource
 import com.androidpositive.viewmodel.toResource

@@ -1,6 +1,7 @@
-package com.androidpositive.ghubstore
+package com.androidpositive.ghubstore.ui.github
 
 import android.app.Application
+import com.androidpositive.ghubstore.BuildConfig
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import dagger.hilt.android.HiltAndroidApp

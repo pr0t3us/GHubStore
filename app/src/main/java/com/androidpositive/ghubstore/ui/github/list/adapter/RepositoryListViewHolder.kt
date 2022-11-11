@@ -1,17 +1,17 @@
-package com.androidpositive.ghubstore.presentation.repositorylist.detail.adapter
+package com.androidpositive.ghubstore.ui.github.list.adapter
 
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.androidpositive.ghubstore.databinding.ItemRepositoryListBinding
-import org.kohsuke.github.GHRelease
+import com.androidpositive.ghubstore.ui.github.RepositoryUiModel
 
-class ReleaseListViewHolder(
+class RepositoryListViewHolder(
     private val binding: ItemRepositoryListBinding
 ) : ViewHolder(binding.root) {
 
-    fun bind(item: GHRelease) {
+    fun bind(item: RepositoryUiModel) {
         with(binding) {
             name.text = item.name
-            description.text = item.body
+            description.text = item.description
         }
     }
 }
