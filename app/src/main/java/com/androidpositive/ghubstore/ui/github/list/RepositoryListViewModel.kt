@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.androidpositive.ghubstore.data.interactors.GithubRepositoryInteractor
+import com.androidpositive.ghubstore.data.repository.GithubRepository
 import com.androidpositive.ghubstore.ui.github.RepositoryUiModel
 import com.androidpositive.ghubstore.ui.github.detail.RepositoryDetailUiModel
 import com.androidpositive.viewmodel.Event
@@ -26,7 +26,7 @@ interface RepositoryListViewModel {
 
 @HiltViewModel
 class RepositoryListViewModelImpl @Inject constructor(
-    private val interactor: GithubRepositoryInteractor
+    private val repository: GithubRepository
 ) : ViewModel(), RepositoryListViewModel {
     private val repositoryNameList: List<String> = listOf("pr0t3us/GHubStore")
     private var repositoryListRawData: Result<List<GHRepository>>? = null
@@ -34,7 +34,7 @@ class RepositoryListViewModelImpl @Inject constructor(
     override val repositories: LiveData<Resource<List<RepositoryUiModel>>> = liveData {
         emit(Resource.Loading())
         try {
-            repositoryListRawData = interactor.getRepositories(repositoryNameList)
+            repositoryListRawData = repository.fetchRepositories(repositoryNameList)
             val repositories = repositoryListRawData!!.toUiModels().toResource()
             emit(repositories)
         } catch (exception: Exception) {
@@ -49,7 +49,8 @@ class RepositoryListViewModelImpl @Inject constructor(
             detailsNavigationUiModel.value = Event(
                 repositoryListRawData?.map {
                     val repository = it[position]
-                    interactor.listReleases(repository).toUiModel(repository, navController)
+                    this@RepositoryListViewModelImpl.repository.fetchReleases(repository)
+                        .toUiModel(repository, navController)
                 }?.toResource()
             )
         }
