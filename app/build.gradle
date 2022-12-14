@@ -88,7 +88,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+    kapt 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
     implementation project(':infrastructure:viewbinding')
     implementation project(':infrastructure:viewmodel')
