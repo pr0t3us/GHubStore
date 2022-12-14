@@ -30,26 +30,19 @@ class RepositoryListViewModelImpl @Inject constructor(
     private val sourceListRepository: SourceListRepository,
     private val repository: GithubRepository
 ) : ViewModel(), RepositoryListViewModel {
-    private val repositoryNameList: LiveData<List<String>> = liveData {
-        viewModelScope.launch {
-            val defaultSources = sourceListRepository.fetchDefaultSources().getOrThrow()
-            val sources = sourceListRepository.fetchSources().getOrThrow()
-            emit((defaultSources + sources).map { it.name })
-        }
-    }
-
     private var repositoryListRawData: Result<List<GHRepository>>? = null
 
     override val repositories: LiveData<Resource<List<RepositoryUiModel>>> = liveData {
         emit(Resource.Loading())
-        repositoryNameList.value?.let {
-            try {
-                repositoryListRawData = repository.fetchRepositories(it)
-                val repositories = repositoryListRawData!!.toUiModels().toResource()
-                emit(repositories)
-            } catch (exception: Exception) {
-                emit(Resource.Failure(exception))
-            }
+        try {
+            val defaultSources = sourceListRepository.fetchDefaultSources().getOrThrow()
+            val localSources = sourceListRepository.fetchSources().getOrThrow()
+            val sources = (defaultSources + localSources).map { it.name }
+            repositoryListRawData = repository.fetchRepositories(sources)
+            val repositories = repositoryListRawData!!.toUiModels().toResource()
+            emit(repositories)
+        } catch (exception: Exception) {
+            emit(Resource.Failure(exception))
         }
     }
     override val detailsNavigationUiModel =
