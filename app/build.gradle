@@ -59,6 +59,7 @@ android {
         viewBinding true
         dataBinding true
     }
+    namespace 'com.androidpositive.ghubstore'
 }
 
 dependencies {

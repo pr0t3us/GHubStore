@@ -9,6 +9,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.androidpositive.viewbinding'
 }
 
 dependencies {
