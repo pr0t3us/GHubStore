@@ -13,6 +13,8 @@
     <string name="title_repository_list">Repositories</string>
     <string name="title_repository_detail">Repository Detail</string>
 
+    <string name="repository_add_cta_description">Repository add cta description</string>
+
     <!-- Error messages -->
     <string name="general_error">Something went wrong</string>
     <string name="repository_add_full_name_hint">Enter repository full name</string>

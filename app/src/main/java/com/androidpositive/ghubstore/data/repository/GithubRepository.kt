@@ -10,6 +10,7 @@ import javax.inject.Inject
 interface GithubRepository {
     suspend fun fetchRepositories(names: List<String>): Result<List<GHRepository>>
     suspend fun fetchReleases(repository: GHRepository): Result<List<GHRelease>>
+    suspend fun searchRepositories(name: String): Result<List<GHRepository>>
 }
 
 @BoundTo(supertype = GithubRepository::class, component = ViewModelComponent::class)
@@ -23,5 +24,9 @@ private class GithubRepositoryImpl @Inject constructor(
 
     override suspend fun fetchReleases(repository: GHRepository): Result<List<GHRelease>> {
         return runCatching { remoteDataSource.fetchReleases(repository) }
+    }
+
+    override suspend fun searchRepositories(name: String): Result<List<GHRepository>> {
+        return runCatching { remoteDataSource.searchRepositories(name) }
     }
 }

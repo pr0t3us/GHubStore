@@ -11,6 +11,7 @@ import javax.inject.Inject
 interface SourceListRepository {
     suspend fun fetchDefaultSources(): Result<List<SourceDto>>
     suspend fun fetchSources(): Result<List<SourceDto>>
+    suspend fun saveSource(name: String)
 }
 
 @BoundTo(supertype = SourceListRepository::class, component = ViewModelComponent::class)
@@ -27,6 +28,12 @@ private class SourceListRepositoryImpl @Inject constructor(
     override suspend fun fetchSources(): Result<List<SourceDto>> {
         return runCatching {
             sourceDao.getAll().map { sourceMapper.convertToDto(it) }
+        }
+    }
+
+    override suspend fun saveSource(name: String) {
+        runCatching {
+            sourceDao.insertAll(sourceMapper.convertToModel(SourceDto(name)))
         }
     }
 }
