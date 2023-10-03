@@ -1,9 +1,8 @@
 package com.androidpositive.ghubstore.ui.github.list
 
 import com.androidpositive.extensions.createCaptor
-import com.androidpositive.ghubstore.data.interactors.GithubRepositoryInteractor
-import com.androidpositive.ghubstore.ui.github.list.RepositoryListViewModelImpl
-import com.androidpositive.ghubstore.ui.github.list.toUiModels
+import com.androidpositive.ghubstore.data.repository.GithubRepository
+import com.androidpositive.ghubstore.data.repository.SourceListRepository
 import com.androidpositive.viewmodel.BaseViewModelTest
 import com.androidpositive.viewmodel.Resource
 import com.androidpositive.viewmodel.toResource
@@ -17,14 +16,17 @@ import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
 class RepositoryListViewModelTest : BaseViewModelTest() {
-    private val interactor = mock<GithubRepositoryInteractor>()
+    private val interactor = mock<GithubRepository>()
+    private val sourceListRepository = mock<SourceListRepository>()
 
     @Test
     fun `sets successful state when get the repository list`() = runTest {
+        whenever(sourceListRepository.fetchDefaultSources()).thenReturn(Result.success(emptyList()))
+        whenever(sourceListRepository.fetchSources()).thenReturn(Result.success(emptyList()))
         val repositories = Result.success(listOf<GHRepository>())
-        whenever(interactor.getRepositories(any())).thenReturn(repositories)
+        whenever(interactor.fetchRepositories(any())).thenReturn(repositories)
 
-        val viewModel = RepositoryListViewModelImpl(interactor)
+        val viewModel = RepositoryListViewModelImpl(sourceListRepository, interactor)
         val repositoriesCaptor = viewModel.repositories.createCaptor()
 
         repositoriesCaptor.assertSendsValues(
@@ -35,10 +37,12 @@ class RepositoryListViewModelTest : BaseViewModelTest() {
 
     @Test
     fun `sets failure state when get the repository list`() = runTest {
+        whenever(sourceListRepository.fetchDefaultSources()).thenReturn(Result.success(emptyList()))
+        whenever(sourceListRepository.fetchSources()).thenReturn(Result.success(emptyList()))
         val error = Result.failure<List<GHRepository>>(Throwable())
-        whenever(interactor.getRepositories(any())).thenReturn(error)
+        whenever(interactor.fetchRepositories(any())).thenReturn(error)
 
-        val viewModel = RepositoryListViewModelImpl(interactor)
+        val viewModel = RepositoryListViewModelImpl(sourceListRepository, interactor)
         val repositoriesCaptor = viewModel.repositories.createCaptor()
 
         repositoriesCaptor.assertSendsValues(

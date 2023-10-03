@@ -6,6 +6,7 @@ android {
     defaultConfig {
         minSdk 23
     }
+    namespace 'com.androidpositive'
 }
 
 dependencies {

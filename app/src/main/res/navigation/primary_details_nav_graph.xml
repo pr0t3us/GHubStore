@@ -7,10 +7,13 @@
     <fragment
         android:id="@+id/repository_list_fragment"
         android:name="com.androidpositive.ghubstore.ui.github.list.RepositoryListFragment"
-        android:label="RepositoryList">
+        android:label="@string/title_repository_list">
         <action
             android:id="@+id/show_repository_detail"
             app:destination="@id/repository_detail_fragment" />
+        <action
+            android:id="@+id/action_repository_list_fragment_to_repositoryAddDialogFragment"
+            app:destination="@id/repository_add_dialog_fragment" />
     </fragment>
     <fragment
         android:id="@+id/repository_detail_fragment"
@@ -23,4 +26,8 @@
             app:nullable="true"
             app:argType="com.androidpositive.ghubstore.ui.github.detail.RepositoryDetailUiModel" />
     </fragment>
+    <dialog
+        android:id="@+id/repository_add_dialog_fragment"
+        android:name="com.androidpositive.ghubstore.ui.github.add.RepositoryAddDialogFragment"
+        android:label="RepositoryAddDialogFragment" />
 </navigation>
