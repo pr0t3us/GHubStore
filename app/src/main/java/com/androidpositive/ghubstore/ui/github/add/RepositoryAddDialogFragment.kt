@@ -37,4 +37,9 @@ class RepositoryAddDialogFragment : DialogFragment(R.layout.dialog_repository_ad
             }
         }
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+    }
 }
