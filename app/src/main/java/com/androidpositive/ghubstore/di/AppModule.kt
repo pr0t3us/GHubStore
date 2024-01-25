@@ -1,5 +1,6 @@
 package com.androidpositive.ghubstore.di
 
+import android.app.DownloadManager
 import android.content.Context
 import androidx.room.Room
 import com.androidpositive.ghubstore.data.datasource.AppDatabase
@@ -50,5 +51,13 @@ object AppModule {
     @Provides
     fun provideSourceMapper(): SourceMapper {
         return Mappers.getMapper(SourceMapper::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDownloadManager(
+        @ApplicationContext context: Context
+    ): DownloadManager {
+        return context.getSystemService(DownloadManager::class.java)
     }
 }
