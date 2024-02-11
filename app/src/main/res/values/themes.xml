@@ -1,7 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.GHubStore" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="backgroundColor">@color/white</item>
+        <item name="backgroundColor">?attr/colorOnPrimary</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/grey_900</item>
         <item name="colorPrimaryVariant">@color/grey_800</item>

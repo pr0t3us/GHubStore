@@ -13,7 +13,7 @@ class ReleaseListViewHolder(
     fun bind(item: GHRelease, onAssetClick: (GHAsset) -> Unit) {
         with(binding) {
             name.text = item.name
-            item.assets().take(2).onEach { asset ->
+            item.listAssets().onEach { asset ->
                 root.addView(
                     TextView(binding.root.context).apply {
                         text = asset.name
