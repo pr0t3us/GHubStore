@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.asFlow
@@ -135,3 +136,24 @@ fun RepositoryDetailPaneInner(
         }
     }
 }
+
+@PreviewLightDark
+@Composable
+fun RepositoryDetailPaneInnerPreview() {
+    GHubStoreTheme {
+        RepositoryDetailPaneInner(
+            modifier = Modifier,
+            detailsState = previewSuccessData,
+            onItemClick = {},
+            onError = {}
+        )
+    }
+}
+
+private val previewSuccessData = Resource.Success(
+    linkedMapOf(
+        "Repository 1" to mutableListOf<List<GHAsset>>(),
+        "Repository 2" to mutableListOf<List<GHAsset>>(),
+        "Repository 3" to mutableListOf<List<GHAsset>>(),
+    )
+)
