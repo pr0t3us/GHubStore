@@ -16,6 +16,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.asFlow
 import com.androidpositive.ghubstore.R
 import com.androidpositive.ghubstore.ui.github.RepositoryUiModel
@@ -39,7 +41,7 @@ import org.kohsuke.github.GHAsset
 
 @Composable
 fun RepositoryDetailPane(
-    viewModel: RepositoryDetailViewModel,
+    viewModel: RepositoryDetailViewModel = hiltViewModel<RepositoryDetailViewModelImpl>(),
     model: RepositoryUiModel
 ) {
     val scope = rememberCoroutineScope()
@@ -48,20 +50,25 @@ fun RepositoryDetailPane(
         initial = Resource.Loading()
     )
     LaunchedEffect(key1 = model) {
-        viewModel.onInitScreen(model.rawData)
+        model.rawData?.let { viewModel.onInitScreen(it) }
     }
     GHubStoreTheme {
-        Scaffold { paddingValues ->
+        Scaffold(
+            snackbarHost = {
+                SnackbarHost(hostState = snackbarHostState)
+            }
+        ) { paddingValues ->
             val errorMessage = stringResource(id = R.string.general_error)
             RepositoryDetailPaneInner(
                 modifier = Modifier.padding(paddingValues),
                 detailsState = detailsState,
-                onItemClick = viewModel::onAssetClick
-            ) {
-                scope.launch {
-                    snackbarHostState.showSnackbar(errorMessage)
+                onItemClick = viewModel::onAssetClick,
+                onError = {
+                    scope.launch {
+                        snackbarHostState.showSnackbar(errorMessage)
+                    }
                 }
-            }
+            )
         }
     }
 }
