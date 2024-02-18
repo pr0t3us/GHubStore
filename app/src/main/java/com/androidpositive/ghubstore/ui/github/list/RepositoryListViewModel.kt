@@ -49,15 +49,15 @@ class RepositoryListViewModelImpl @Inject constructor(
         MutableLiveData<Event<Resource<RepositoryDetailNavigationModel>?>>()
 
     override fun onItemClicked(position: Int, navController: NavController) {
-        viewModelScope.launch {
-            detailsNavigationUiModel.value = Event(
-                repositoryListRawData?.map {
-                    val repository = it[position]
-                    this@RepositoryListViewModelImpl.repository.fetchReleases(repository)
-                        .toUiModel(repository, navController)
-                }?.toResource()
-            )
-        }
+//        viewModelScope.launch {
+//            detailsNavigationUiModel.value = Event(
+//                repositoryListRawData?.map {
+//                    val repository = it[position]
+//                    this@RepositoryListViewModelImpl.repository.fetchReleases(repository)
+//                        .toUiModel(repository, navController)
+//                }?.toResource()
+//            )
+//        }
     }
 }
 
