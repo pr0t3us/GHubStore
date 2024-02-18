@@ -23,7 +23,6 @@
         <activity
             android:name=".ui.github.RepositoryComposeActivity"
             android:exported="true"
-            android:label="@string/title_activity_repository_compose"
             android:theme="@style/Theme.GHubStore">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,18 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.github.RepositoryHostActivity"
-            android:exported="true"
-            android:resizeableActivity="true"
-            tools:targetApi="n">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

@@ -1,14 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
 }
 
 android {
+    namespace 'com.androidpositive.ghubstore'
     compileSdk 34
-
     defaultConfig {
         applicationId "com.androidpositive.ghubstore"
         minSdk 23
@@ -57,11 +56,8 @@ android {
         jvmTarget = '17'
     }
     buildFeatures {
-        viewBinding true
-        dataBinding true
         compose true
     }
-    namespace 'com.androidpositive.ghubstore'
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.1'
     }
@@ -116,9 +112,7 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     kapt 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
-    implementation project(':infrastructure:viewbinding')
     implementation project(':infrastructure:viewmodel')
-    implementation project(':infrastructure:extensions')
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "androidx.arch.core:core-testing:2.1.0"
