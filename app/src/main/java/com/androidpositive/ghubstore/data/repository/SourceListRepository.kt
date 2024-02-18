@@ -15,7 +15,7 @@ interface SourceListRepository {
 }
 
 @BoundTo(supertype = SourceListRepository::class, component = ViewModelComponent::class)
-private class SourceListRepositoryImpl @Inject constructor(
+class SourceListRepositoryImpl @Inject constructor(
     private val sourceDao: SourceDao,
     private val defaultRepositories: DefaultRepositoriesDataSource,
     private val sourceMapper: SourceMapper

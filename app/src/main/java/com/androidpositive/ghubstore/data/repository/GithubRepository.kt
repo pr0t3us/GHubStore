@@ -17,7 +17,7 @@ interface GithubRepository {
 }
 
 @BoundTo(supertype = GithubRepository::class, component = ViewModelComponent::class)
-private class GithubRepositoryImpl @Inject constructor(
+class GithubRepositoryImpl @Inject constructor(
     private val remoteDataSource: GithubRemoteDataSource,
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher
 ) : GithubRepository {
