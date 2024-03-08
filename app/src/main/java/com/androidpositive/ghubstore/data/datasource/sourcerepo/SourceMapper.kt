@@ -1,12 +1,13 @@
 package com.androidpositive.ghubstore.data.datasource.sourcerepo
 
-import org.mapstruct.InheritInverseConfiguration
-import org.mapstruct.Mapper
+import com.androidpositive.ghubstore.data.datasource.Mapper
 
-@Mapper
-interface SourceMapper {
-    fun convertToDto(sourceEntity: SourceEntity): SourceDto
 
-    @InheritInverseConfiguration
-    fun convertToModel(sourceDto: SourceDto): SourceEntity
+class SourceMapper : Mapper<SourceEntity, SourceDto> {
+    override fun convertToTarget(source: SourceEntity): SourceDto = SourceDto(source.name)
+
+    override fun convertToSource(target: SourceDto): SourceEntity = SourceEntity(
+        uid = 0,
+        name = target.name
+    )
 }
