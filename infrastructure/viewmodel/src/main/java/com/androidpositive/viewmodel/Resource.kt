@@ -51,18 +51,6 @@ fun <T> MutableLiveData<Resource<T>>.setLoading(data: T? = null) {
     this.value = Loading(data)
 }
 
-fun <T> MutableLiveData<Event<Resource<T>>>.onSuccessEvent(): (T) -> Unit {
-    return { this.value = Event(Success(it)) }
-}
-
-fun <T> MutableLiveData<Event<Resource<T>>>.onFailureEvent(data: T? = null): (Throwable) -> Unit {
-    return { this.value = Event(Failure(it, data)) }
-}
-
-fun <T> MutableLiveData<Event<Resource<T>>>.setLoadingEvent(data: T? = null) {
-    this.value = Event(Loading(data))
-}
-
 fun <T, R> LiveData<Resource<T>>.map(transform: (T) -> R): LiveData<Resource<R>> {
     return Transformations.map(this) {
         it.map(transform)

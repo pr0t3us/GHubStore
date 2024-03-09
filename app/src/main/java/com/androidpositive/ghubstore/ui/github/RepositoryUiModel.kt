@@ -8,5 +8,5 @@ data class RepositoryUiModel(
     val name: String,
     val description: String?,
     @Deprecated(message = "For testing purpose only")
-    val rawData: GHRepository
+    val rawData: GHRepository? = null
 ) : Serializable

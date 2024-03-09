@@ -1,15 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.GHubStore" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="backgroundColor">?attr/colorPrimaryVariant</item>
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/grey_800</item>
-        <item name="colorOnPrimary">@color/grey_900</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/indigo_500</item>
-        <item name="colorSecondaryVariant">@color/indigo_900</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="backgroundColor">?attr/colorOnPrimary</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>

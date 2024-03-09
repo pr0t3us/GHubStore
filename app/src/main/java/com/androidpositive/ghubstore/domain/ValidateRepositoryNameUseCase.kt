@@ -9,7 +9,7 @@ interface ValidateRepositoryNameUseCase {
 }
 
 @BoundTo(supertype = ValidateRepositoryNameUseCase::class, component = ViewModelComponent::class)
-private class ValidateRepositoryNameUseCaseImpl @Inject constructor(
+class ValidateRepositoryNameUseCaseImpl @Inject constructor(
 ) : ValidateRepositoryNameUseCase {
     override operator fun invoke(name: String): Boolean {
         return name.contains("/")

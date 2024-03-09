@@ -4,8 +4,11 @@ import android.app.DownloadManager
 import android.content.Context
 import androidx.room.Room
 import com.androidpositive.ghubstore.data.datasource.AppDatabase
+import com.androidpositive.ghubstore.data.datasource.Mapper
 import com.androidpositive.ghubstore.data.datasource.sourcerepo.DefaultRepositoriesDataSource
 import com.androidpositive.ghubstore.data.datasource.sourcerepo.SourceDao
+import com.androidpositive.ghubstore.data.datasource.sourcerepo.SourceDto
+import com.androidpositive.ghubstore.data.datasource.sourcerepo.SourceEntity
 import com.androidpositive.ghubstore.data.datasource.sourcerepo.SourceMapper
 import dagger.Module
 import dagger.Provides
@@ -15,7 +18,6 @@ import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import org.kohsuke.github.GitHub
 import org.kohsuke.github.GitHubBuilder
-import org.mapstruct.factory.Mappers
 import javax.inject.Singleton
 
 @Module
@@ -49,8 +51,8 @@ object AppModule {
     }
 
     @Provides
-    fun provideSourceMapper(): SourceMapper {
-        return Mappers.getMapper(SourceMapper::class.java)
+    fun provideSourceMapper(): Mapper<SourceEntity, SourceDto> {
+        return SourceMapper()
     }
 
     @Provides

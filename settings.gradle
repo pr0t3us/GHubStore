@@ -14,7 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "GHubStore"
 include ':app'
-include ':infrastructure:viewbinding'
 include ':infrastructure:viewmodel'
-include ':infrastructure:extensions'
 include ':infrastructure:test:livedata'
